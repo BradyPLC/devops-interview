@@ -7,7 +7,8 @@ With this test, we want to see your ability to create a CI/CD pipeline and suppo
 
 The app is a simple weather lookup by user entered locations. 
 
-- The app is built with dotnet core sdk version 3.1
+- The app targets version 3.1 of the dotnet core sdk
+- The app is built using [Blazor Server](https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-6.0). 
 - The app uses [AccuWeather API](https://developer.accuweather.com/accuweather-locations-api/apis) for lcoations lookup
   -  You will need to create a free account with [AccuWeather](https://developer.accuweather.com/) in order to register an application and call their API.
 - The startup application is **BradyWeather.Blazor.Server.csproj**
@@ -19,7 +20,7 @@ At the end of the exercise the application should look like below.
 ### The task
 Your task is to automate the deployment and provisioning of resources that host the app provided.
 It should be hosted in a highly available and scalable web application hosted in **Azure**. A free account can be created [here](https://azure.microsoft.com/en-gb/free/)
-for Azure.  Should not have to spend any money to get complete the exercise. 
+for Azure.  You should not have to spend any money to complete this exercise. 
 
 Your CI job should:
 - Investigate and understand which values need to be swapped as part of CICD pipeline. This needs to be done for the application to work :)  
