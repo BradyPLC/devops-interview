@@ -34,7 +34,7 @@ Your CI job should:
 - Create a public Github repository and fork the Brady repository into it. 
 - Your solution should be pushed here.  Please do not submit PRs back to the main repository.
 - Include a README which desribes how the CI pipeline and any IAC works
-- A link the site that has been deployed. 
+- A link to the site that has been deployed. 
 
 ### Bonus Points
 - Commit often - would rather see a history of trial and error than a single push. 
