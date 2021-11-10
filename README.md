@@ -26,7 +26,7 @@ Your CI job should:
 - Investigate and understand which values need to be swapped as part of CICD pipeline. This needs done for the application to work :)  
 - Run when a feature branch is pushed to Github (you should fork this repository to your Github account). 
 - Deploy to a target environment when the job is successful.
-- A clean minimumal working infrastructure is preferred than a full blown solution pieced together with scissors, rope and duct tape. 
+- A clean minimal working infrastructure is preferred than a full blown solution pieced together with scissors, rope and duct tape. 
 - Consider security.
 - Consider tests at all levels. 
 
