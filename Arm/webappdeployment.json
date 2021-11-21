@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+   
+  "location": {
+    "type": "string",
+    "defaultValue": "[resourceGroup().location]"
+
+  },
+  
+  "appserviceplan": { 
+      "type": "string"
+  },
+  "webappname": {
+      "type": "string"
+
+  }
+  
+
+  },
+
+  "variables": {
+    
+  },
+  "resources": [
+    
+    {
+        "type": "Microsoft.Web/serverfarms",
+        "apiVersion": "2021-02-01",
+        "location": "[parameters('location')]",
+        "properties": {
+            "reserved": false
+        },
+        "name": "[parameters('appserviceplan')]",
+        "sku": {
+            "tier": "free",
+            "name": "F1"
+        }
+      
+ 
+
+    },
+    {
+        "type": "Microsoft.Web/sites",
+        "apiVersion": "2021-02-01",
+        "location": "[parameters('location')]",
+        "name": "[parameters('webappname')]",
+        "properties": {
+            "httpsOnly": false,
+            "serverFarmId": "[parameters('appserviceplan')]"
+        },
+        "dependsOn": ["[resourceId('Microsoft.Web/serverfarms', parameters('appserviceplan'))]"]
+
+
+    }
+
+
+    
+  ]
+}
