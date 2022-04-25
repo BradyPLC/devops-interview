@@ -88,5 +88,11 @@
         "count": "[length(parameters('environments'))]"
       }
     }
-  ]
+  ],
+  "outputs": {
+    "webAppName": {
+      "type": "string",
+      "value": "[parameters('webAppName')]"
+    }
+  }
 }
