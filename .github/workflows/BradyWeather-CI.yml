@@ -73,6 +73,6 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
       - name: Swap slot
-        run: az webapp deployment slot swap -g env.AZURE_RG_NAME -n env.AZURE_WEBAPP_NAME --slot Staging --target-slot production
+        run: az webapp deployment slot swap -g $AZURE_RG_NAME -n $AZURE_WEBAPP_NAME --slot Staging --target-slot production
       - name: Azure Logout
         run: az logout
