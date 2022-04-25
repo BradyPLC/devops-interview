@@ -84,7 +84,8 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./templates/azuredeploy.json
           parameters: ./templates/azuredeploy.dev.parameters.json
-      
+      - run: echo ${{ steps.arm-deployment.outputs.webAppName }}
+      - run: echo ${{ steps.arm-deployment.outputs }}
       - name: Deploy to Staging Slot
         id: deploy-to-webapp-slot
         uses: azure/webapps-deploy@v2
