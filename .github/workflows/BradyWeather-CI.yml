@@ -29,14 +29,16 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-
       - name: Build with dotnet
         run: dotnet build --configuration Release
+
+      - name: Test
+        run: dotnet test --no-build
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
-      - name: Upload artifact for deployment job
+      - name: Upload artifact for deployment  job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
@@ -61,9 +63,14 @@ jobs:
           files: 'appsettings.json'
         env:
           'Web:WeatherApi.ApiKey': ${{ secrets.WEATHER_API_KEY }}
+      - name: Azure Login 
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+      - name: Azure Logout
+        run: az logout
