@@ -3,7 +3,6 @@ name: BradyWeather-CI-CD
 env:
   AZURE_WEBAPP_SLOT_NAME: Staging
   AZURE_RG_NAME: rg-fsp-test
-  AZURE_WEBAPP_NAME: fsptest0001
   AZURE_WEBAPP_PACKAGE_PATH: './Src/Presentation/BradyWeather.Blazor.Server'  
   DOTNET_VERSION: '3.1'
   ARM_TEMPLATES_PATH: './.github/templates'
@@ -123,6 +122,7 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
 
       - name: Run ARM deployment
+        id: arm-deployment
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
@@ -168,6 +168,7 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
 
       - name: Run ARM deployment
+        id: arm-deployment
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
@@ -213,6 +214,7 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
 
       - name: Run ARM deployment
+        id: arm-deployment
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
