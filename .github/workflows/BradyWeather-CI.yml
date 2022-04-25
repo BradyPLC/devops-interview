@@ -52,7 +52,7 @@ jobs:
     needs: build
     environment:
       name: 'Dev'
-      url: ${{ steps.deploy-to-webapp-slot.outputs.webapp-url }}
+      url: https://${{ steps.arm-deployment.outputs.webAppName }}.azurewebsites.net
 
     steps:
       - name: Download artifact from build job
