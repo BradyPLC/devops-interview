@@ -76,8 +76,8 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
-          template: ./azuredeploy.json
-          parameters: ./azuredeploy.dev.parameters.json
+          template: ./templates/azuredeploy.json
+          parameters: ./templates/azuredeploy.dev.parameters.json
       
       - name: Deploy to Staging Slot
         id: deploy-to-webapp-slot
