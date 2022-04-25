@@ -58,7 +58,7 @@ jobs:
         run: ls -R
       - uses: microsoft/variable-substitution@v1 
         with:
-          files: 'web.config'
+          files: 'appsettings.json'
         env:
           'Web:WeatherApi.ApiKey': ${{ secrets.WEATHER_API_KEY }}
       - name: Deploy to Azure Web App
