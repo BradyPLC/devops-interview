@@ -56,6 +56,11 @@ jobs:
           name: .net-app
       - name: Display structure of downloaded files
         run: ls -R
+      - uses: microsoft/variable-substitution@v1 
+        with:
+          files: 'web.config'
+        env:
+          'Web:WeatherApi.ApiKey': ${{ secrets.WEATHER_API_KEY }}
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
