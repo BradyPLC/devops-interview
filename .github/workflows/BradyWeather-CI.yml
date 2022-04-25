@@ -1,7 +1,7 @@
 name: BradyWeather-CI-CD
 
 env:
-  AZURE_WEBAPP_SLOT_NAME: fsptest0001-Staging
+  AZURE_WEBAPP_SLOT_NAME: Staging
   AZURE_RG_NAME: rg-fsp-test
   AZURE_WEBAPP_NAME: fsptest0001
   AZURE_WEBAPP_PACKAGE_PATH: './Src/Presentation/BradyWeather.Blazor.Server'  
@@ -70,7 +70,8 @@ jobs:
         id: deploy-to-webapp-slot
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
       - name: Swap slot
         run: az webapp deployment slot swap -g env.AZURE_RG_NAME -n env.AZURE_WEBAPP_NAME --slot Staging --target-slot production
       - name: Azure Logout
