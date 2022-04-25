@@ -102,7 +102,7 @@ jobs:
     needs: Dev
     environment:
       name: 'Test'
-      url: ${{ steps.deploy-to-webapp-slot.outputs.webapp-url }}
+      url: https://${{ steps.arm-deployment.outputs.webAppName }}.azurewebsites.net
 
     steps:
       - name: Download artifact from build job
@@ -148,7 +148,7 @@ jobs:
     needs: Test
     environment:
       name: 'Uat'
-      url: ${{ steps.deploy-to-webapp-slot.outputs.webapp-url }}
+      url: https://${{ steps.arm-deployment.outputs.webAppName }}.azurewebsites.net
 
     steps:
       - name: Download artifact from build job
@@ -162,6 +162,7 @@ jobs:
           files: 'appsettings.json'
         env:
           'Web:WeatherApi.ApiKey': ${{ secrets.WEATHER_API_KEY }}
+
       - name: Azure Login 
         uses: azure/login@v1
         with:
@@ -194,7 +195,7 @@ jobs:
     needs: Uat
     environment:
       name: 'Prod'
-      url: ${{ steps.deploy-to-webapp-slot.outputs.webapp-url }}
+      url: https://${{ steps.arm-deployment.outputs.webAppName }}.azurewebsites.net
 
     steps:
       - name: Download artifact from build job
