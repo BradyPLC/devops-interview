@@ -84,16 +84,17 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./templates/azuredeploy.json
           parameters: ./templates/azuredeploy.dev.parameters.json
-      - run: echo ${{ toJSON(steps.arm-deployment.outputs.webAppName) }}
-      - run: echo ${{ toJSON(steps.arm-deployment.outputs) }}
+
       - name: Deploy to Staging Slot
         id: deploy-to-webapp-slot
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ steps.arm-deployment.outputs.webAppName }}
           slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
+
       - name: Swap slot
         run: az webapp deployment slot swap -g $AZURE_RG_NAME -n ${{ steps.arm-deployment.outputs.webAppName }} --slot Staging --target-slot production
+      
       - name: Azure Logout
         run: az logout
 
@@ -133,10 +134,12 @@ jobs:
         id: deploy-to-webapp-slot
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          app-name: ${{ steps.arm-deployment.outputs.webAppName }}
           slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
+
       - name: Swap slot
-        run: az webapp deployment slot swap -g $AZURE_RG_NAME -n $AZURE_WEBAPP_NAME --slot Staging --target-slot production
+        run: az webapp deployment slot swap -g $AZURE_RG_NAME -n ${{ steps.arm-deployment.outputs.webAppName }} --slot Staging --target-slot production
+      
       - name: Azure Logout
         run: az logout
 
@@ -176,10 +179,12 @@ jobs:
         id: deploy-to-webapp-slot
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          app-name: ${{ steps.arm-deployment.outputs.webAppName }}
           slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
+
       - name: Swap slot
-        run: az webapp deployment slot swap -g $AZURE_RG_NAME -n $AZURE_WEBAPP_NAME --slot Staging --target-slot production
+        run: az webapp deployment slot swap -g $AZURE_RG_NAME -n ${{ steps.arm-deployment.outputs.webAppName }} --slot Staging --target-slot production
+      
       - name: Azure Logout
         run: az logout
 
@@ -219,9 +224,11 @@ jobs:
         id: deploy-to-webapp-slot
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          app-name: ${{ steps.arm-deployment.outputs.webAppName }}
           slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
+
       - name: Swap slot
-        run: az webapp deployment slot swap -g $AZURE_RG_NAME -n $AZURE_WEBAPP_NAME --slot Staging --target-slot production
+        run: az webapp deployment slot swap -g $AZURE_RG_NAME -n ${{ steps.arm-deployment.outputs.webAppName }} --slot Staging --target-slot production
+      
       - name: Azure Logout
         run: az logout
