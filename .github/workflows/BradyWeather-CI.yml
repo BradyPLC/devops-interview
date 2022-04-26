@@ -33,7 +33,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet vstest **/BradyWeather.Tests.dll
+        run: dotnet vstest **bin/**/BradyWeather.Tests.dll
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
