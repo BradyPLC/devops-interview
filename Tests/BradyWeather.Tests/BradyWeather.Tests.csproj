@@ -7,17 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Moq" Version="4.17.2" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    <PackageReference Include="Refit" Version="5.2.1" />
     <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Src\Core\BradyWeather.Application\BradyWeather.Application.csproj" />
-    <ProjectReference Include="..\Src\Presentation\BradyWeather.Blazor.Server\BradyWeather.Blazor.Server.csproj" />
+    <ProjectReference Include="..\..\Src\Core\BradyWeather.Application\BradyWeather.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
