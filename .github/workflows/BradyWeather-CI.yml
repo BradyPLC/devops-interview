@@ -191,6 +191,7 @@ jobs:
         run: az logout
 
   Prod:
+    if: github.repository == 'main'
     runs-on: ubuntu-latest
     needs: Uat
     environment:
