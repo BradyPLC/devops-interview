@@ -33,7 +33,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet vstest --no-build
+        run: dotnet vstest
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp

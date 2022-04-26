@@ -54,20 +54,18 @@ namespace BradyWeather.Tests
 
             var streamingWeatherCTS = new CancellationTokenSource();
             var weatherClient = RestService.For<IWeatherClient>(weatherApiUrl);
-            var logger = new Mock<ILogger<GetLocationsSearchHandler>>();
+            var logger = new Mock<ILogger<GetWeatherForecastHandler>>();
             var weatherSettings = new WeatherSettings()
             {
                 ApiKey = weatherApiKey,
                 BaseAddress = new System.Uri(weatherApiUrl)
             };
             var monitor = Mock.Of<IOptionsMonitor<WeatherSettings>>(_ => _.CurrentValue == weatherSettings);
-            var handler = new GetLocationsSearchHandler(logger.Object, weatherClient, monitor);
+            var handler = new GetWeatherForecastHandler(logger.Object, weatherClient, monitor);
 
-            var weatherResponse = await handler.Handle(new GetLocationsByTextRequest() { Search = "London" }, streamingWeatherCTS.Token);
+            var weatherResponse = await handler.Handle(new GetWeatherForecastRequest { LocationKey = "LON" }, streamingWeatherCTS.Token);
 
             Assert.IsNotNull(weatherResponse);
-            Assert.IsTrue(weatherResponse.Length > 0);
-            Assert.IsTrue(weatherResponse.Select(x => x.LocalizedName == "London").ToList().Count() > 0);
         }
 
         public static IConfiguration InitConfiguration()
